@@ -1,3 +1,196 @@
-<p>
-  login works!
-</p>
+<div style="width:90%;margin:5%; background-color:#f3f3f3" class="card ">
+  <div class="row center ">
+
+    <!-- /////////////Social Login Form ///////////// -->
+
+    <div style="padding:30px;" class="col-md-12 col-xs-12 col-lg-6  aMargin">
+      <h4 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important " class="text-center font-weight-bold">دَاوُوا مَرضاكُمْ بِالصَّدقةِ</h4>
+      <div class="text-center btn-group-lg ">
+        <a (click)="forFreeRegister =false;freeProcess.freeType='request';freeProcess.freeTitle='تسجيل طلب دواء'" style="color:white ;font-family:JF-Flat!important " id="facebook"  class="btn btn-fb d-inline-block"data-toggle="modal" data-target="#myLogin"><i class="fas fa-hands"></i>
+          طلب دواء مجاناً</a><br>
+        <a (click)="forFreeRegister =false;freeProcess.freeType='gift';freeProcess.freeTitle='تسجيل تبرع بدواء'" style="color:white ;font-family:JF-Flat!important " id="google"  class="btn btn-go d-inline-block" data-toggle="modal" data-target="#myLogin" ><i class="fas fa-handshake-o"></i>
+          تبرع بدواء مجاناً</a><br>
+        <a (click)="forFreeRegister =false;freeProcess.freeType='watch';freeProcess.freeTitle='طلبات و تبرعات'" style="color:white ;font-family:JF-Flat!important " href="#" data-toggle="modal" data-target="#myLogin" class="btn btn-tw d-inline-block "><i class="fas fa-binoculars "></i> طلبات و تبرعات</a>
+      </div>
+    </div>
+
+    <!-- /////////////Email/Password Login Form ///////////// -->
+
+    <div  style="padding:30px;" class="aMargin col-md-12 col-xs-12 col-lg-6">
+      <h2 class="text-center font-weight-bold">Account Login</h2>
+
+      <form   class="form" role="form" method="post" accept-charset="UTF-8" id="login">
+        <div style="margin-top:20px;" class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+          <input name="email" [(ngModel)]="email" type="email" class="form-control" id="email" placeholder="Email address"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Password</label>
+          <input name="password" [(ngModel)]="password" type="password" class="form-control" id="password" placeholder="Password"
+            required>
+         
+          <a class="btn btn-link" (click)="forReset=true;forLogin=false;resetEmail='';"><b>Forget the password ? </b></a>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-outline-primary btn-block">Sign in</button>
+        </div>
+        <!-- <div class="checkbox">
+            <label>
+              <input type="checkbox"> keep me logged-in
+            </label>
+          </div> -->
+      </form>
+      <div>
+        <a class="btn btn-link" (click)="forRegister=true;forLogin=false"><b>Join Us </b>If you are new here</a>
+      </div>
+    </div>
+
+    <!-- /////////////Reset Password ///////////// -->
+
+    <div [hidden]="!forReset" style="padding:30px;" class="aMargin col-md-12 col-xs-12 col-lg-6">
+      <h2 class="text-center font-weight-bold">Reset Password</h2>
+
+      <form (submit)="resetPassword()" class="form" role="form" method="post" accept-charset="UTF-8" id="resetPassword">
+        <div style="margin-top:20px;" class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+          <input name="email" [(ngModel)]="resetEmail" type="email" class="form-control" id="resetEmail" placeholder="Enter your email address"
+            required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-outline-primary btn-block">Reset Password</button>
+        </div>
+        <!-- <div class="checkbox">
+            <label>
+              <input type="checkbox"> keep me logged-in
+            </label>
+          </div> -->
+          <a class="btn btn-link" (click)="forRegister=false;forReset=false;forLogin=true"><b>Login </b>If you have account</a>
+      </form>
+      <div *ngIf="canRegister=='true' && forLogin==true">
+        <a class="btn btn-link" (click)="forRegister=true;forLogin=false;"><b>Join Us </b>If you are new here</a>
+      </div>
+    </div>
+
+
+    <!-- /////////////Register Form ///////////// -->
+
+    <div [hidden]="true" style="padding:30px;" class="aMargin col-md-12 col-xs-12 col-lg-6">
+      <h2 class="text-center font-weight-bold">JOIN US</h2>
+
+      <form (submit)="onRegister()" class="form" method="post" #Register="ngForm" accept-charset="UTF-8" id="Register">
+        <div style="margin-top:20px;" class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+          <input name="Remail" [(ngModel)]="rEmail" type="email" class="form-control" id="Remail" placeholder="Email address"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Password</label>
+          <input #Rpassword="ngModel" name="p1" [(ngModel)]="rPassword" type="password" class="form-control" id="Rpassword"
+            placeholder="Password" required (keyup)="onChange()">
+
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+          <input #Rcpassword="ngModel" [(ngModel)]="rcPassword" name="p2" type="password" class="form-control" id="Rcpassword"
+            placeholder="Confirm Password" required (keyup)="onChange()">
+
+          <div *ngIf="(Rcpassword.dirty || Rcpassword.touched) &&(Rcpassword.value!= Rpassword.value)" class="alert alert-danger">
+            Not same password
+          </div>
+
+
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-outline-primary btn-block font-weight-bold" [disabled]="!Register.form.valid || !equal">Join
+            Us</button>
+        </div>
+        <a class="btn btn-link" (click)="forRegister=false;forLogin=true"><b>Login </b>If you have account</a>
+      </form>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- //////////// Free myLogin Modal ////////////// -->
+<div>
+<div class="modal fade" id="myLogin">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    
+    <div [hidden]="forFreeRegister"  style="padding:30px;" class="col-md-12 col-xs-12 col-lg-12">
+      <h2 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="text-center font-weight-bold">{{freeProcess.freeTitle}}</h2>
+
+      <form   class="form" role="form" method="post" accept-charset="UTF-8" id="login">
+        <div style="margin-top:20px;" class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">أدخل بريدك المسجل لدينا</label>
+          <input name="emailFree" [(ngModel)]="emailFree" type="email" class=" rtl form-control" id="email" placeholder="أدخل بريدك المسجل لدينا"
+            required>
+        </div>
+        <div class="rtl form-group">
+          <label class="sr-only" for="exampleInputPassword2">أدخل كلمة السر المسجلة لدينا</label>
+          <input name="passwordFree" [(ngModel)]="passwordFree" type="password" class="rtl form-control" id="password" placeholder="أدخل كلمة السر المسجلة لدينا"
+            required>
+          <a style="font-family:Droid-Arabic-Kufi!important " class="btn btn-link" (click)="forReset=true;forLogin=false;resetEmail='';"><b>نسيت كلمة السر ؟ </b></a>
+        </div>
+        <div class="form-group">
+          <button style="font-family:JF-Flat!important " type="submit" class="btn btn-outline-primary btn-block"><b>دخـول</b></button>
+        </div>
+        <!-- <div class="checkbox">
+            <label>
+              <input type="checkbox"> keep me logged-in
+            </label>
+          </div> -->
+      </form>
+      <div class="rtl">
+        <a style="font-size:14px;font-family:Droid-Arabic-Kufi!important " class="btn btn-link" (click)="forFreeRegister=true;">إذا لم تكن مشترك معنا  <b> إشترك الآن </b> </a>
+      </div>
+    </div>  
+       <!-- //////////// Free Register Modal ///////////// -->
+<div [hidden]="!forFreeRegister" style="padding:30px;" class="rtl aMargin col-md-12 col-xs-12 col-lg-12">
+  <h2 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="rtl text-center font-weight-bold">إشترك في دوائي</h2>
+
+  <form (submit)="onRegister()" class="form" method="post" #Register="ngForm" accept-charset="UTF-8" id="Register">
+    <div style="margin-top:20px;" class="form-group">
+      <label class="sr-only" for="exampleInputEmail2">Email address</label>
+      <input name="Remail" [(ngModel)]="rEmail" type="email" class="rtl form-control" id="Remail" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
+        required>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputPassword2">Password</label>
+      <input #Rpassword="ngModel" name="p1" [(ngModel)]="rPassword" type="password" class="form-control" id="Rpassword"
+        placeholder="أدخل كلمة سر" required (keyup)="onChange()">
+
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+      <input #Rcpassword="ngModel" [(ngModel)]="rcPassword" name="p2" type="password" class="form-control" id="Rcpassword"
+        placeholder="أدخل كلمة السر مرة أخرى" required (keyup)="onChange()">
+
+      <div *ngIf="(Rcpassword.dirty || Rcpassword.touched) &&(Rcpassword.value!= Rpassword.value)" class="alert alert-danger">
+        يجب تأكيد كلمة السر
+      </div>
+
+
+    </div>
+    <div class="form-group">
+      <button style="font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold" [disabled]="!Register.form.valid || !equal">إشترك معنا</button>
+    </div>
+    <a class="btn btn-link" (click)="forFreeRegister=false;forFreeLogin=true">يمكنك <b> الدخول إلى حسابك</b> إذا كنت مسجل لدينا</a>
+  </form>
+
+
+
+</div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button style="font-family:JF-Flat!important " type="button" class="btn btn-danger" data-dismiss="modal">إغلاق </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
