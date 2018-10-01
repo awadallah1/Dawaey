@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
     forFreeRegister: false}
     forFreeLogin=true;  
   forFreeRegister:boolean= false
+  forPayLogin=true;
+  forPayRegister=false;
   constructor() { }
 
   ngOnInit() {

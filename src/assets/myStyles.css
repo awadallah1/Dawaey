@@ -62,5 +62,15 @@ label{
   padding: 3px;
 }
 
+@media only screen and (max-width: 405px) {
+  .fontMobile{
+      font-size:11px;
+      
+  }
+  .fontTitleMobile{
+      font-size:17px;
+      
+  }
+}
 
 
