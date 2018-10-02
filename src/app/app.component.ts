@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
       $('nav').fadeIn('slow')
       $('#master').fadeIn('slow');
       $('footer').fadeIn('slow');
-     
-     
+          
       $('#login').hover(function(){this.style.fontSize='19px';this.style.color='white'},function(){this.style.fontSize='17px';this.style.color='whitesmoke'})
       $(document).on('click',function(e) {
         if(  $(e.target).attr('class') != 'navbar' ) {

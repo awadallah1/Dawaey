@@ -1,4 +1,5 @@
-<div id="master" style="display:none;width:90%;margin-top:3%;margin-bottom:1.529%;margin-left:5%;margin-right:5%; background-color:#f3f3f3" class="card ">
+<div id="master" style="display:none;width:90%;margin-top:3%;margin-bottom:1.529%;margin-left:5%;margin-right:5%; background-color:#f3f3f3"
+  class="card ">
   <div class="row center ">
     <!-- /////////////Social Login Form ///////////// -->
     <div class="screenMarg mobMargFree col-md-12 col-xs-12 col-lg-6 ">
@@ -47,7 +48,7 @@
           </div> -->
       </form>
       <div>
-        <a class=" fontMobile fontScreen btn btn-link" (click)="forPayRegister=true;forPayLogin=false">إذا
+        <a style="font-family:JF-Flat!important " class=" fontMobile fontScreen btn btn-link" (click)="forPayRegister=true;forPayLogin=false">إذا
           لم تكن مشترك معنا <b> إشترك الآن </b> </a>
       </div>
     </div>
@@ -76,9 +77,7 @@
       </div>
     </div>
 
-
     <!-- /////////////Payed Register Form ///////////// -->
-
     <div [hidden]="!forPayRegister" class="rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-6">
       <h4 style="color:indigo;font-family:'Droid-Arabic-Kufi-1'!important " class="fontTitleMobile text-center font-weight-bold">إشترك
         في دوائي</h4>
@@ -89,50 +88,44 @@
           <input name="Remail" [(ngModel)]="rEmail" type="email" class="form-control" id="Remail" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
             required>
         </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">أدخل كلمة سر</label>
+          <input #Rpassword="ngModel" name="p1" [(ngModel)]="rPassword" type="password" class="form-control" id="Rpassword"
+            placeholder="أدخل كلمة السر" required (keyup)="onChange()">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+          <input #Rcpassword="ngModel" [(ngModel)]="rcPassword" name="p2" type="password" class="form-control" id="Rcpassword"
+            placeholder="أدخل كلمة السر مرة أخري" required (keyup)="onChange()">
 
-       
-         
-            <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">أدخل كلمة سر</label>
-              <input #Rpassword="ngModel" name="p1" [(ngModel)]="rPassword" type="password" class="form-control" id="Rpassword"
-                placeholder="أدخل كلمة السر" required (keyup)="onChange()">
-            </div>
-            <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
-              <input #Rcpassword="ngModel" [(ngModel)]="rcPassword" name="p2" type="password" class="form-control" id="Rcpassword"
-                placeholder="أدخل كلمة السر مرة أخري" required (keyup)="onChange()">
-    
-              <div style="font-family:JF-Flat!important;" *ngIf="(Rcpassword.dirty || Rcpassword.touched) &&(Rcpassword.value!= Rpassword.value)"
-                class="alert alert-danger">
-                يجب تأكيد كلمة السر
-              </div>
-           
+          <div style="font-family:JF-Flat!important;" *ngIf="(Rcpassword.dirty || Rcpassword.touched) &&(Rcpassword.value!= Rpassword.value)"
+            class="alert alert-danger">
+            يجب تأكيد كلمة السر
           </div>
-          <div style="border-radius: 0.25rem;
+
+        </div>
+        <!--------- Pharmacy or Customer Options ---------->
+        <div style="border-radius: 0.25rem;
           border: 1px solid #ced4da;
           padding: 10px;
           width: 100%;
           height: 100px;margin-bottom:20px;">
-           <h6 style="font-family:JF-Flat!important;font-weight:bold; ">حدد صلاحية الدخول</h6>
-           <div style="width: 40%;" class="badge badge-default">          
-<label class="con">
-  <input type="radio" id="ph" checked="checked" name="radio">
-  <label style="font-size:20px" for="ph">صيدلي</label>
-  <span class="checkmark"></span>
-</label>
-</div>
-<div style = "width: 40%;margin-right:30px;" class="badge badge-default">
-<label class="con">
-  <input type="radio" id="cust" name="radio">
-  <label style="font-size:20px" for="cust">عميل</label>
-  <span class="checkmark"></span>
-</label>
-</div>
+          <h6 style="font-family:JF-Flat!important;font-weight:bold; ">حدد صلاحية الدخول</h6>
+          <div data-toggle="modal" data-target="#pharmacyNotes" style="width: 40%;" class="badge badge-default">
+            <label class="con">
+               <input type="radio" id="ph" (change)="payOption='ph';onSelectionChange(payOption)"  [checked]="payOption==='ph'" name="radio">
+              <label style="font-family:JF-Flat!important;font-size:20px" for="ph">صيدلي</label>
+              <span class="checkmark"></span>
+            </label>
           </div>
-       
-
-        
-
+          <div style="width: 40%;margin-right:30px;" class="badge badge-default">
+            <label class="con">
+              <input type="radio" id="cust" (change)="payOption='cust';onSelectionChange(payOption)"  [checked]="payOption==='cust'" name="radio" >
+              <label style="font-family:JF-Flat!important;font-size:20px" for="cust">عميل</label>
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
 
         <div class="form-group">
           <button style="font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold"
@@ -189,7 +182,7 @@
             في دوائي</h4>
 
           <form (submit)="onRegister()" class="form" method="post" #Register="ngForm" accept-charset="UTF-8" id="Register">
-            
+
             <div style="margin-top:20px;" class="form-group">
               <label class="sr-only" for="exampleInputEmail2">Email address</label>
               <input name="Remail" [(ngModel)]="rEmail" type="email" class="rtl form-control" id="Remail" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
@@ -233,3 +226,95 @@
   </div>
 
 </div>
+
+<!-- //////////// PayedOption Register Modal ////////////// -->
+<div>
+  <div class="modal fade" id="myPayedLogin">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+           <!-- //////////// Pharmacy Register Modal ///////////// -->
+        <div [hidden]="forFreeRegister" style="padding:30px;" class="col-md-12 col-xs-12 col-lg-12">
+          <h4 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="fontTitleMobile text-center font-weight-bold">إستكمال بيانات صيدلية</h4>
+          <h6 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="fontTitleMobile text-center font-weight-bold">إستكمال بيانات صيدلية</h6>
+          <form class="form" role="form" method="post" accept-charset="UTF-8" id="login">
+            <div style="margin-top:20px;" class="form-group">
+              <label class="sr-only" for="exampleInputEmail2">أدخل بريدك المسجل لدينا</label>
+              
+            </div>
+            <div class="rtl form-group">
+              <label class="sr-only" for="exampleInputPassword2">أدخل كلمة السر المسجلة لدينا</label>
+            
+              
+            </div>
+            <div class="form-group">
+              <button style="font-family:JF-Flat!important " type="submit" class="btn btn-outline-primary btn-block"><b>دخـول</b></button>
+            </div>
+           
+          </form>
+          
+        </div>
+        
+        <!-- //////////// Customer Register Modal ///////////// -->
+        <div [hidden]="!forFreeRegister" style="padding:30px;" class="rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-12">
+          <h4 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="rtl fontTitleMobile text-center font-weight-bold">إشترك
+            في دوائي</h4>
+          <form (submit)="onRegister()" class="form" method="post" #Register="ngForm" accept-charset="UTF-8" id="Register">
+            <div style="margin-top:20px;" class="form-group">
+              <label class="sr-only" for="exampleInputEmail2">Email address</label>
+             
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputPassword2">Password</label>
+              
+
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+              
+              
+            </div>
+            <div class="form-group">
+              <button style="font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold"
+                [disabled]="!Register.form.valid || !equal">إشترك معنا</button>
+            </div>
+            
+          </form>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button style="font-family:JF-Flat!important " type="button" class="btn btn-danger" data-dismiss="modal">إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!---------------- PayedOption Pharmacy Notes ----------------->
+<div>
+    <div data-keyboard="false" data-backdrop="static" class="modal hide fade in" id="pharmacyNotes">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Body -->
+          <app-ph-notes></app-ph-notes>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="mx-auto">
+                <button (click)="payOption=''" style="min-width: 100px; margin-right: 20px; font-family:JF-Flat!important " type="button" class="btn btn-danger " data-dismiss="modal">إلغاء
+                  </button>
+                  <button style="min-width: 100px;font-family:JF-Flat!important " type="button" class="btn btn-success " data-dismiss="modal">إستمرار
+                  </button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+
