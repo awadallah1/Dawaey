@@ -1,26 +1,64 @@
-#navColor{
-        
-    color: white;
-    border-top: 0px solid white;
-    background-color: #c91d61;
-    background: linear-gradient(20deg,blue,crimson,purple); /*Change colors as you want*/
-    background-size: 1000% 1000% !important;
-    -webkit-animation: changeColors 30s ease infinite;
-    -moz-animation: changeColors 30s ease infinite;
-    -o-animation: changeColors 30s ease infinite;
-    animation: changeColors 30s ease infinite;
-   
-}
+.awesome {
+  color:#313131;
+  -webkit-animation: colorchange 20s ease infinite;
+  -moz-animation: colorchange 20s ease infinite;
+  -o-animation: colorchange 20s ease infinite;
+  animation: colorchange 20s ease infinite;
+    
+  }
 
-@-webkit-keyframes changeColors {
+  @-webkit-keyframes colorchange {
     0% {
-        background-position: 0 50%;
+      
+      color: yellow;
     }
+    
+    10% {
+      
+      color: #88fa06;
+    }
+    
+    20% {
+      
+      color: #04f7c6;
+    }
+    
+    30% {
+      
+      color: #15fd00;
+    }
+    
+    40% {
+      
+      color: rgb(230, 255, 6);
+    }
+    
     50% {
-        background-position: 100% 50%;
+      
+      color: #017df8;
     }
+    
+    60% {
+      
+      color: rgb(0, 247, 255);
+    }
+    
+    70% {
+      
+      color: #afdfff;
+    }
+    80% {
+   
+      color: #01fc0e;
+    }
+    
+    90% {
+   
+      color: #d9ff00;
+    }
+    
     100% {
-        background-position: 0 50%;
+      
+      color: rgb(248, 244, 6);
     }
-}
-
+  }

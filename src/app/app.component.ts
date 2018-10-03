@@ -10,7 +10,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     /////////Jquery////////
     $(document).ready(function () {
-      
+      $(".modal").on("hidden.bs.modal", function(){
+        alert('hhhhhhhhhhhhh');
+    });
       $('nav').fadeIn('slow')
       $('#master').fadeIn('slow');
       $('footer').fadeIn('slow');

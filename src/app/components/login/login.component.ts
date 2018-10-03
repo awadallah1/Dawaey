@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -17,13 +17,25 @@ export class LoginComponent implements OnInit {
   forPayLogin = true;
   forPayRegister = false;
   payOption: string = '';
-  
+
   constructor() { }
 
   ngOnInit() {
+    this.collapse();
+    }
+       
 
-  }
-  onSelectionChange(s) {
-    ///code if change payOption ph or cust
+  
+
+
+
+///////////////////////////////// Jquiry Methods  /////////////////////////////
+  
+collapse(){
+    $(document).ready(function () {
+      $(".modal").on("hidden.bs.modal", function(){
+        $("div.collapse").removeClass("show");
+    });
+  })
   }
 }

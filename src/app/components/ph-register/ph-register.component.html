@@ -1,0 +1,57 @@
+<!---------------- Pharmacy Register ----------------->
+<div>
+  <div data-keyboard="false" data-backdrop="static" class="modal fade" id="phreg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <!-- Modal Body -->
+     <!-- /////////////Payed Register Form ///////////// -->
+     <div  class="rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-12">
+      <h4 style="color:indigo;font-family:'Droid-Arabic-Kufi-1'!important " class="fontTitleMobile text-center font-weight-bold">إشترك
+        في دوائي</h4>
+
+      <form (submit)="onPhRegister()" class="form" method="post"  accept-charset="UTF-8" >
+        <div style="margin-top:20px;" class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن</label>
+          <input name="phEmail" type="email" class="form-control"  placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="phPassword">أدخل كلمة سر</label>
+          <input  name="phPassword"  type="password" class="form-control" 
+            placeholder="أدخل كلمة السر" required (keyup)="onChange()">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+          <input name="cPhPassword" type="password" class="form-control" id="cPhPassword"
+            placeholder="أدخل كلمة السر مرة أخري" required (keyup)="onChange()">
+
+          <div class="alert alert-danger" style="font-family:JF-Flat!important;" *ngIf="(cPhPassword.dirty || cPhPassword.touched) &&(cPhPassword.value!= phPassword.value)">
+            يجب تأكيد كلمة السر
+          </div>
+
+        </div>
+       <div class="form-group">
+          <button style="font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold"
+            [disabled]="!Register.form.valid || !equal">
+            إشترك معنا</button>
+        </div> 
+      
+      </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <div class="mx-auto">
+              <button style="margin-left:20px; min-width: 100px; font-family:JF-Flat!important " type="button" class="btn btn-danger " data-dismiss="modal">إلغاء
+                </button>
+                <button  data-toggle="modal" data-target="#pharmacyNotes" style="min-width: 100px;font-family:JF-Flat!important " type="button" class="btn btn-success " data-dismiss="modal">تسجيل
+                </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
