@@ -1,0 +1,7 @@
+<div>
+    
+    <input (keyup)="onKeyUp();" type="text" placeholder=" أكتب ناتج {{code1.toLocaleString('ar-EG')}} + {{code2.toLocaleString('ar-EG')}} " class="form-control" id="code" name="code" [(ngModel)]="answer" required>
+    <div *ngIf="error"  class="text-center alert alert-danger" role="alert" >
+      <span style="font-family:JF-Flat">{{ error }}</span> 
+    </div>
+  </div>

@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-root',
@@ -10,25 +10,22 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     /////////Jquery////////
     $(document).ready(function () {
-      $(".modal").on("hidden.bs.modal", function(){
-        alert('hhhhhhhhhhhhh');
-    });
       $('nav').fadeIn('slow')
       $('#master').fadeIn('slow');
       $('footer').fadeIn('slow');
-          
-      $('#login').hover(function(){this.style.fontSize='19px';this.style.color='white'},function(){this.style.fontSize='17px';this.style.color='whitesmoke'})
-      $(document).on('click',function(e) {
-        if(  $(e.target).attr('class') != 'navbar' ) {
-            $('#navbarColor01').removeClass('show',);
-           
-        }
-    });
-        
-      
-  });
 
-  
+      $('#login').hover(function () { this.style.fontSize = '19px'; this.style.color = 'white' }, function () { this.style.fontSize = '17px'; this.style.color = 'whitesmoke' })
+      $(document).on('click', function (e) {
+        if ($(e.target).attr('class') != 'navbar') {
+          $('#navbarColor01').removeClass('show');
+
+        }
+      });
+
+
+    });
+
+
   }
 
 }

@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PhNotesComponent } from './components/subComponents/ph-notes/ph-notes.component';
 import { CustNotesComponent } from './components/subComponents/cust-notes/cust-notes.component';
 import { PhRegisterComponent } from './components/ph-register/ph-register.component';
+import { CaptchaComponent } from './components/subComponents/captcha/captcha.component';
 
 const appRoutes: Routes = [
   
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     LoginComponent,
     PhNotesComponent,
     CustNotesComponent,
-    PhRegisterComponent
+    PhRegisterComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserModule,
