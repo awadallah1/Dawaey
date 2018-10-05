@@ -28,10 +28,10 @@ export class CaptchaComponent implements OnInit {
   checkAnswer() {
     this.error = null;
     if ((this.code1 + this.code2) == this.answer) {
-      document.getElementById('code').classList.add('ng-valid')
+      document.getElementById('code').className="form-control ng-untouched ng-pristine ng-valid"
       return true;
     } else {
-      document.getElementById('code').classList.replace('ng-valid', 'ng-invalid')
+      document.getElementById('code').className="form-control ng-untouched ng-pristine ng-invalid"
       this.answer = null;
       this.error = "أكتب الناتج الصحيح";
     }

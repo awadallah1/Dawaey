@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
-
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 //// Toasters notify
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,6 +16,7 @@ import { PhNotesComponent } from './components/subComponents/ph-notes/ph-notes.c
 import { CustNotesComponent } from './components/subComponents/cust-notes/cust-notes.component';
 import { PhRegisterComponent } from './components/ph-register/ph-register.component';
 import { CaptchaComponent } from './components/subComponents/captcha/captcha.component';
+import { LoadingComponent } from './components/subComponents/loading/loading.component';
 
 const appRoutes: Routes = [
   
@@ -32,13 +33,15 @@ const appRoutes: Routes = [
     PhNotesComponent,
     CustNotesComponent,
     PhRegisterComponent,
-    CaptchaComponent
+    CaptchaComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     SnotifyModule,
+    Ng2ImgMaxModule, // Resize Image size before uploading to firestore 
     ToastrModule.forRoot(
       {
         timeOut: 3000,
