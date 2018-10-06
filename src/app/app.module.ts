@@ -17,6 +17,9 @@ import { CustNotesComponent } from './components/subComponents/cust-notes/cust-n
 import { PhRegisterComponent } from './components/ph-register/ph-register.component';
 import { CaptchaComponent } from './components/subComponents/captcha/captcha.component';
 import { LoadingComponent } from './components/subComponents/loading/loading.component';
+// services
+import { GeoService } from "./services/geo.service";
+
 
 const appRoutes: Routes = [
   
@@ -56,7 +59,7 @@ const appRoutes: Routes = [
     )
   ],
   providers: [{ provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-  SnotifyService],
+  SnotifyService,GeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

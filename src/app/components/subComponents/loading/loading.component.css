@@ -7,6 +7,7 @@
     position:absolute;
     margin-top:50px;
     margin-left:50px;
+    margin-right: -2px;
     margin-bottom: 60px;
     transform:translate(-50%,-50%);
     width:100px;
@@ -104,11 +105,13 @@
         position: absolute;
         margin-top: 50px;
         margin-right: -50px;
-        margin-bottom: 60px;
+        margin-bottom: 1000px;
         -webkit-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
         width: 100px;
         height: 100px;
         box-sizing: border-box;
     }
-}
+
+   
+       }

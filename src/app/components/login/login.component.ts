@@ -35,6 +35,9 @@ collapse(){
     $(document).ready(function () {
       $(".modal").on("hidden.bs.modal", function(){
         $("div.collapse").removeClass("show");
+        $("#phreg").find("input,textarea,select").val('').end();
+        // $("#checkboxG2").prop('checked', false);
+        // $('label').html('')
     });
   })
   }

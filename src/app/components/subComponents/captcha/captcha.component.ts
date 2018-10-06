@@ -15,9 +15,7 @@ export class CaptchaComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.addEventListener("hidden.bs.modal", function(){
-     alert('booooooooooooooooooo')
-  });
+
     this.code1 = Math.floor((Math.random() * 5) + 1);
     this.code2 = Math.floor((Math.random() * 5) + 1);
   }
