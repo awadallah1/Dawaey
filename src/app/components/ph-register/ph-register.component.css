@@ -11,7 +11,7 @@ input[type=checkbox].css-checkbox + label.css-label {
     line-height: 36px;
     background-repeat: no-repeat;
     background-position: 0 0;
-    font-size: 17px;
+    font-size: 14px;
     font-family:Droid-Arabic-Kufi-1;
     vertical-align: middle;
     cursor: pointer;
@@ -28,4 +28,19 @@ background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_6a85234bd18
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
+}
+
+@media (min-width: 992px){
+
+    .divHeight{
+        max-height: 237px;
+        height: 237px;
+    }
+}
+@media (max-width: 992px){
+
+    .divHeight{
+        max-height: 237px;
+        height: 237px;
+    }
 }

@@ -10,67 +10,77 @@
           بيانات صيدلية
         </h4>
         <form class="form" method="post" accept-charset="UTF-8" id="phRegister">
-          
+
           <div style="margin:10px 10px 0px 10px;" class="row">
             <div class="card text-white bg-primary mb-3 ml-lg-4 rtl order-first  mobMargPay screenMarg col-md-12 col-xs-12 col-lg-6 ">
               <div style="margin-top:20px;" class="form-group">
-
                 <label class="sr-only" for="exampleInputEmail2">أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن</label>
-                <input  name="phEmail" type="email" class="form-control" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
+                <input name="phEmail" type="email" class="form-control" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
                   required onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"'>
               </div>
-              
+
               <div class="form-group">
                 <label class="sr-only" for="phPassword">أدخل كلمة سر</label>
-                <input name="phPassword"  type="password" class="form-control" placeholder="أدخل كلمة السر"
-                  required>
+                <input name="phPassword" type="password" class="form-control" placeholder="أدخل كلمة السر" required
+                  onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل كلمة السر"'>
               </div>
               <div class="form-group">
                 <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
-                <input name="cPhPassword" type="password" class="form-control" id="cPhPassword"
-                  placeholder="أدخل كلمة السر مرة أخري" required>
+                <input name="cPhPassword" type="password" class="form-control" id="cPhPassword" placeholder="أدخل كلمة السر مرة أخري"
+                  required onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل كلمة السر مرة أخري"'>
                 <div id="captcha" name="captcha" class="rtl" style="margin-top:15px;">
                   <app-captcha></app-captcha>
                 </div>
               </div>
             </div>
             <!------------------------ location and document --------------------------->
-            <div class="card text-white bg-primary mb-3 ml-lg-4 rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-5 ">
+
+            <div class="card divHeight text-white bg-primary mb-3 ml-lg-4 rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-5 ">
               <td>
+                <div style="margin-top:20px;" class="form-group">
+                  <label class="sr-only" for="phName"></label>
+                  <input name="phName" type="text" class="form-control" placeholder="أدخل إسم الصيدلية مبتدأ بكلمة صيدلية"
+                    required onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل إسم الصيدلية مبتدأ بكلمة صيدلية"'>
+                </div>
+              </td>
+              <td style="margin-top: -18px;">
                 <input type="checkbox" name="checkboxG2" id="checkboxG2" class="css-checkbox" [checked]="locationChecked"
                   (change)="locationObtained=!locationObtained;locationChecked=!locationChecked;locationResult()">
-                <label for="checkboxG2" class="css-label">إضغط لتحديد موقعك</label>
+                <label  for="checkboxG2" class="css-label">إضغط لتحديد موقعك</label>
               </td>
-             <td>
-                <label [class.badge-danger]="!locationObtained" [class.badge-success]="locationObtained" class="badge" style="font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;" *ngIf="locationChecked"  >{{coordsResult}}</label>
-             </td>
-                  
-                     
+              <td>
+                <label id="phRegLabel" [class.badge-danger]="!locationObtained" [class.badge-success]="locationObtained"
+                  class="badge" style="font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;" *ngIf="locationChecked">{{coordsResult}}</label>
+              </td>
+
+
               <!------------------ Document Upload --------------------------->
               <div>
-                  <input type="file" hidden #upload (change)="onImageChange($event)" accept="image/*">
-                  
-                      
-                          <div style="min-height: 100px;" [hidden]="!locationChecked&&!locationObtained" class="row">
-                              <div class="col-lg-5 col-7">
-                                  <div style="margin-top:40px" (click)="upload.click();" class="btn btn-dark ">
-                                      صورة السجل التجاري</div>
-                              </div>
-                              
-                              <div class="col-lg-7 col-5">
-                                  <div *ngIf="load"><app-loading></app-loading></div>
-                                  <img style="margin-top:0px;margin-bottom: 1px;"
-                                      *ngIf="url" class="rounded-circle ml-lg-5" [src]="sanitizer.bypassSecurityTrustUrl(url)"
-                                      height="100px" width="100px" alt='Nooo First Image'> 
-                                  <!-- <img style="margin-top:0px;margin-left:0px;margin-bottom: 1px;"
+                <input type="file" hidden #upload (change)="onImageChange($event)" accept="image/*">
+
+
+                <div style="min-height: 100px;" [hidden]="!locationChecked&&!locationObtained" class="row">
+                  <div class="col-lg-5 col-7">
+                    <div id="phRegBtn" style="margin-top:20px;font-family:'Droid-Arabic-Kufi'!important;font-size: 13px;"
+                      (click)="upload.click();showImage();" class="btn btn-dark ">
+                      صورة السجل التجاري</div>
+                  </div>
+
+                  <div style="margin-top:-50px;" class="col-lg-7 col-5">
+                    <div *ngIf="load">
+                      <app-loading></app-loading>
+                    </div>
+                    <img id="regImage" style="margin-top:0px;margin-bottom: 1px;" *ngIf="url" class="rounded-circle ml-lg-5"
+                      [src]="sanitizer.bypassSecurityTrustUrl(url)" height="100px" width="100px" alt='Nooo First Image'>
+                    <!-- <img style="margin-top:0px;margin-left:0px;margin-bottom: 1px;"
                                       *ngIf="!url && !myEvent && employee.image" alt='Noooo image' class="rounded-circle"
                                       src="{{employee.image}}" height="100px" width="100px"> -->
-                              </div>
-                          </div>
-                    
-
-                 
+                  </div>
                 </div>
+
+
+
+              </div>
             </div>
           </div>
           <!-- Modal footer -->

@@ -35,6 +35,7 @@ export class PhRegisterComponent implements OnInit {
     constructor(public sanitizer: DomSanitizer, private ng2ImgMax: Ng2ImgMaxService, private toastr: ToastrService, private geo: GeoService, private snotify: SnotifyService) { }
 
     ngOnInit() {
+        
     }
     /// Image with resize
     onImageChange(event) {
@@ -59,8 +60,12 @@ export class PhRegisterComponent implements OnInit {
                         this.uploadedImage = new File([result], result.name);
                         this.reader.readAsDataURL(this.uploadedImage); // read file as data url
                         this.reader.onload = () => {
+
                             this.url = this.reader.result.toString()
                             this.myEvent = this.uploadedImage;
+                            $(document).ready(function () {
+                                $('#regImage').show();
+                            })
                             this.load = '';
                         }
                     },
@@ -74,15 +79,22 @@ export class PhRegisterComponent implements OnInit {
 
     }
 
+
     locationResult() {
+
         if (this.locationChecked) {
-            navigator.geolocation.getCurrentPosition((position) => {
+
+           navigator.geolocation.getCurrentPosition((position) => {
                 if (position) {
                     this.coords['lat'] = position.coords.latitude.toFixed(7);
                     this.coords['long'] = position.coords.longitude.toFixed(7);
                     this.coordsResult = 'تم تحديد الموقع بنجاح';
                     this.locationObtained = true;
-                    console.log(this.coords)
+                    console.log(this.coords);
+                    $(() => {
+                        $("#phRegBtn").show();
+                        $("#phRegLabel").show();
+                    })
                 }
 
             }, () => {
@@ -91,6 +103,8 @@ export class PhRegisterComponent implements OnInit {
 
 
         }
+
+
         // onKeyUp() {
         //     if (this.antiBot.checkAnswer()) {
         //         document.getElementById('code').classList.add('ng-valid')

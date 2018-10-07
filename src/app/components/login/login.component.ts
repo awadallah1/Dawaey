@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PhRegisterComponent } from '../../components/ph-register/ph-register.component'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -7,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild(PhRegisterComponent)
+  public phReg: PhRegisterComponent;
   freeProcess: {} = {
     freeType: '',
     freeTitle: '',
@@ -22,23 +25,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.collapse();
-    }
-       
-
-  
-
-
-
-///////////////////////////////// Jquiry Methods  /////////////////////////////
-  
-collapse(){
-    $(document).ready(function () {
-      $(".modal").on("hidden.bs.modal", function(){
+  }
+  ///////////////////////////////// Jquiry Methods  /////////////////////////////
+  collapse() {
+    $(()=> {
+      //////on Modal Hide ////////
+      $(".modal").on("hidden.bs.modal", function () {
+        $("#regImage").hide();
+        $("#phRegLabel").hide();
+        $("#phRegBtn").hide();
         $("div.collapse").removeClass("show");
         $("#phreg").find("input,textarea,select").val('').end();
-        // $("#checkboxG2").prop('checked', false);
-        // $('label').html('')
-    });
-  })
+        $("#checkboxG2").prop('checked', false);
+        
+      });
+////on Modal loading ///////////
+      $('#phreg').on('show.bs.modal', () => {
+          this.phReg.locationChecked=false;
+          $("#captchError").hide(); 
+      })
+    })
   }
 }
