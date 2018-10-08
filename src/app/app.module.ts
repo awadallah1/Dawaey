@@ -19,6 +19,7 @@ import { CaptchaComponent } from './components/subComponents/captcha/captcha.com
 import { LoadingComponent } from './components/subComponents/loading/loading.component';
 // services
 import { GeoService } from "./services/geo.service";
+import { CustRegisterComponent } from './components/cust-register/cust-register.component';
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     CustNotesComponent,
     PhRegisterComponent,
     CaptchaComponent,
-    LoadingComponent
+    LoadingComponent,
+    CustRegisterComponent
   ],
   imports: [
     BrowserModule,

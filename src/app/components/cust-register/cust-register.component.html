@@ -1,0 +1,81 @@
+<!---------------- Pharmacy Register ----------------->
+
+<div data-keyboard="false" data-backdrop="static" class="modal fade" id="custReg">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <!-- Modal Body -->
+      <!-- /////////////Payed Register Form ///////////// -->
+      <div class="container">
+        <h4 style="padding:10px 10px 5px 10px;color:#007bff;font-family:'Droid-Arabic-Kufi'!important " class="modal-title fontTitleMobile text-center font-weight-bold">تسجيل
+          بيانات عميل
+        </h4>
+        <form dir="rtl" class="form" method="post" accept-charset="UTF-8" id="custRegister">
+          <div style="margin:10px 10px 0px 10px;" class="row">
+            <div class="card text-white bg-primary mb-3 ml-lg-4 rtl order-first  mobMargPay screenMarg col-md-12 col-xs-12 col-lg-6 ">
+              <div style="margin-top:20px;" class="form-group">
+
+                <input name="custEmail" type="email" class="form-control" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
+                  required onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"'>
+              </div>
+
+              <div class="form-group">
+
+                <input name="custPassword" type="password" class="form-control" placeholder="أدخل كلمة السر" required
+                  onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل كلمة السر"'>
+              </div>
+              <div class="form-group">
+
+                <input name="cCustPassword" type="password" class="form-control" id="cCustPassword" placeholder="أدخل كلمة السر مرة أخري"
+                  required onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل كلمة السر مرة أخري"'>
+                <div id="captcha1" name="captcha1" class="rtl" style="margin-top:15px;">
+                  <app-captcha></app-captcha>
+                </div>
+              </div>
+            </div>
+            <!------------------------ location and document --------------------------->
+
+            <div class="card divHeight text-white bg-primary mb-3 ml-lg-4 rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-5 ">
+
+              <td>
+                <input type="checkbox" name="checkboxG22" id="checkboxG22" class="css-checkbox" [checked]="locationChecked"
+                  (change)="locationObtained=!locationObtained;locationChecked=!locationChecked;locationResult()">
+                <label for="checkboxG22" class="css-label">إضغط هنا لتحديد موقعك</label>
+              </td>
+              <td style="margin-top:-10px;">
+                <label id="custRegLabel" [class.badge-danger]="!locationObtained" [class.badge-success]="locationObtained"
+                  class="badge" style="margin-top:1px; ;font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;" *ngIf="locationChecked">{{coordsResult}}</label>
+              </td>
+
+              <h5 style="padding:5px 10px 0px 10px;color:#f8fafc;font-family:'Droid-Arabic-Kufi'!important " class="modal-title font-weight-bold fontTitleMobile text-center">
+                بيانات إختيارية
+              </h5>
+              <td id="custOptions">
+                <div style="margin-top:10px;" class="form-group">
+                  <input name="custName" type="text" class="form-control" placeholder="أدخل إسمك الثلاثي" required
+                    onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل إسمك الثلاثي"'>
+                </div>
+                <div style="margin-top:10px;" class="form-group">
+                  <input name="custMob" type="text" class="form-control" placeholder="أدخل رقم الموبايل" required
+                    onfocus="this.placeholder = ''" onblur='this.placeholder="أدخل رقم الموبايل"'>
+                </div>
+              </td>
+
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="mx-auto">
+              <button data-toggle="modal" data-target="#pharmacyNotes" style="margin-left: 0px;min-width:100px;font-family:JF-Flat!important;"
+                type="button" class="btn btn-success" data-dismiss="modal">تسجيل
+              </button>
+              <button style="margin-right: 20px;min-width:100px;font-family:JF-Flat!important" type="button" class="btn btn-danger"
+                data-dismiss="modal">إلغاء
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+    </div>

@@ -33,10 +33,12 @@ export class LoginComponent implements OnInit {
       $(".modal").on("hidden.bs.modal", function () {
         $("#regImage").hide();
         $("#phRegLabel").hide();
+        $("#custRegLabel").hide();
         $("#phRegBtn").hide();
         $("div.collapse").removeClass("show");
         $("#phreg").find("input,textarea,select").val('').end();
         $("#checkboxG2").prop('checked', false);
+        $("#checkboxG22").prop('checked', false);
         
       });
 ////on Modal loading ///////////

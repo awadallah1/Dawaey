@@ -5,11 +5,11 @@
     <div class=" modal-content">
       <!-- Modal Body -->
       <!-- /////////////Payed Register Form ///////////// -->
-      <div class="rtl container">
+      <div class="container">
         <h4 style="padding:10px 10px 5px 10px;color:#007bff;font-family:'Droid-Arabic-Kufi'!important " class="modal-title fontTitleMobile text-center font-weight-bold">تسجيل
           بيانات صيدلية
         </h4>
-        <form class="form" method="post" accept-charset="UTF-8" id="phRegister">
+        <form dir="rtl" class="form" method="post" accept-charset="UTF-8" id="phRegister">
 
           <div style="margin:10px 10px 0px 10px;" class="row">
             <div class="card text-white bg-primary mb-3 ml-lg-4 rtl order-first  mobMargPay screenMarg col-md-12 col-xs-12 col-lg-6 ">
@@ -46,7 +46,7 @@
               <td style="margin-top: -18px;">
                 <input type="checkbox" name="checkboxG2" id="checkboxG2" class="css-checkbox" [checked]="locationChecked"
                   (change)="locationObtained=!locationObtained;locationChecked=!locationChecked;locationResult()">
-                <label  for="checkboxG2" class="css-label">إضغط لتحديد موقعك</label>
+                <label  for="checkboxG2" class="css-label">حدد موقعي</label>
               </td>
               <td>
                 <label id="phRegLabel" [class.badge-danger]="!locationObtained" [class.badge-success]="locationObtained"
@@ -70,8 +70,8 @@
                     <div *ngIf="load">
                       <app-loading></app-loading>
                     </div>
-                    <img id="regImage" style="margin-top:0px;margin-bottom: 1px;" *ngIf="url" class="rounded-circle ml-lg-5"
-                      [src]="sanitizer.bypassSecurityTrustUrl(url)" height="100px" width="100px" alt='Nooo First Image'>
+                    <img id="regImage" *ngIf="url" 
+                      [src]="sanitizer.bypassSecurityTrustUrl(url)" height="150px" width="120px" alt='Nooo First Image'>
                     <!-- <img style="margin-top:0px;margin-left:0px;margin-bottom: 1px;"
                                       *ngIf="!url && !myEvent && employee.image" alt='Noooo image' class="rounded-circle"
                                       src="{{employee.image}}" height="100px" width="100px"> -->
@@ -86,12 +86,13 @@
           <!-- Modal footer -->
           <div class="modal-footer">
             <div class="mx-auto">
-              <button style="margin-left:20px; min-width: 100px; font-family:JF-Flat!important " type="button" class="btn btn-danger "
-                data-dismiss="modal">إلغاء
-              </button>
-              <button data-toggle="modal" data-target="#pharmacyNotes" style="min-width: 100px;font-family:JF-Flat!important "
+            
+              <button data-toggle="modal" data-target="#pharmacyNotes" style="margin-left: 0px; min-width: 100px;font-family:JF-Flat!important "
                 type="button" class="btn btn-success " data-dismiss="modal">تسجيل
               </button>
+              <button style="margin-right:20px; min-width: 100px; font-family:JF-Flat!important " type="button" class="btn btn-danger "
+              data-dismiss="modal">إلغاء
+            </button>
             </div>
 
           </div>
