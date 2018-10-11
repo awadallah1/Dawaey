@@ -6,7 +6,7 @@ import { CaptchaComponent } from '../subComponents/captcha/captcha.component';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { GeoService } from "../../services/geo.service";
+
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 
 @Component({
@@ -29,7 +29,7 @@ export class CustRegisterComponent implements OnInit {
   myEvent: any;
   url: string;
   setPosition: any;
-  constructor(public sanitizer: DomSanitizer, private ng2ImgMax: Ng2ImgMaxService, private toastr: ToastrService, private geo: GeoService, private snotify: SnotifyService) { }
+  constructor(public sanitizer: DomSanitizer, private ng2ImgMax: Ng2ImgMaxService, private toastr: ToastrService,private snotify: SnotifyService) { }
 
 
   ngOnInit() {

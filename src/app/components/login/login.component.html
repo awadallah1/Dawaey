@@ -54,12 +54,10 @@
       </div>
     </div>
 
-
-    <!-- /////////////Payed Register Form ///////////// -->
+ <!-- /////////////Payed Register Form ///////////// -->
     <div [hidden]="!forPayRegister" class="rtl mobMargPay screenMarg col-md-12 col-xs-12 col-lg-6">
       <h4 style="color:indigo;font-family:'Droid-Arabic-Kufi-1'!important " class="fontTitleMobile text-center font-weight-bold">إشترك
         في دوائي</h4>
-
 
       <!--------- Pharmacy or Customer Options ---------->
       <div style="border-radius: 0.25rem;
@@ -97,27 +95,27 @@
 
 <!-- //////////// Free myLogin Modal ////////////// -->
 <div>
-  <div class="modal fade" id="myLogin">
+  <div data-keyboard="false" data-backdrop="static" class="modal fade" id="myLogin">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div [hidden]="!forFreeLogin" style="padding:30px;" class="col-md-12 col-xs-12 col-lg-12">
           <h4 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="fontTitleMobile text-center font-weight-bold">{{freeProcess.freeTitle}}</h4>
 
-          <form class="form" role="form" method="post" accept-charset="UTF-8" id="login">
+          <form (submit)="freeSignIn();" class="form" role="form" method="post" accept-charset="UTF-8" id="login">
             <div style="margin-top:20px;" class="form-group">
               <label class="sr-only" for="exampleInputEmail2">أدخل بريدك المسجل لدينا</label>
-              <input name="emailFree" [(ngModel)]="emailFree" type="email" class=" rtl form-control" id="email"
+              <input name="emailFree" [(ngModel)]="lFreeEmail" type="email" class=" rtl form-control" id="email"
                 placeholder="أدخل بريدك المسجل لدينا" required>
             </div>
             <div class="rtl form-group">
               <label class="sr-only" for="exampleInputPassword2">أدخل كلمة السر المسجلة لدينا</label>
-              <input name="passwordFree" [(ngModel)]="passwordFree" type="password" class="rtl form-control" id="password"
+              <input name="passwordFree" [(ngModel)]="lFreePassword" type="password" class="rtl form-control" id="password"
                 placeholder="أدخل كلمة السر المسجلة لدينا" required>
               <a style="font-family:Droid-Arabic-Kufi!important " class="btn btn-link" (click)="forFreeReset=true;forFreeLogin=false;resetFreeEmail='';"><b>نسيت
                   كلمة السر ؟ </b></a>
             </div>
             <div class="form-group">
-              <button style="font-family:JF-Flat!important " type="submit" class="btn btn-outline-primary btn-block"><b>دخـول</b></button>
+              <button style="font-family:JF-Flat!important" class="btn btn-outline-primary btn-block"><b>دخـول</b></button>
             </div>
             <!-- <div class="checkbox">
             <label>
@@ -136,28 +134,38 @@
           <h4 style="color:indigo ;font-family:'Droid-Arabic-Kufi-1'!important" class="rtl fontTitleMobile text-center font-weight-bold">إشترك
             في دوائي</h4>
 
-          <form (submit)="onRegister()" class="form" method="post" #Register="ngForm" accept-charset="UTF-8" id="Register">
+          <form novalidate (submit)="freeSignUp();" class="form" role="form" method="post" #freeRegister="ngForm" accept-charset="UTF-8" id="Register">
 
             <div style="margin-top:20px;" class="form-group">
-              <label class="sr-only" for="exampleInputEmail2">Email address</label>
-              <input name="Remail" [(ngModel)]="rEmail" type="email" class="rtl form-control" id="Remail" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
-                required>
+                
+                <input #RFreeEmail="ngModel" name="RFreeEmail" [(ngModel)]="rFreeEmail" type="email" class="rtl form-control" id="RFreeEmail" placeholder="أدخل بريدك وسيتم إرسال رسالة تأكيد لك الأن"
+                required email=true>
+                <div *ngIf="RFreeEmail.invalid && (RFreeEmail.dirty || RFreeEmail.touched)" class="alert alert-danger">
+                  <div *ngIf="RFreeEmail?.errors.required">
+                      يجب إدخال إيميلك الصحيح
+                  </div>
+                  <div *ngIf="RFreeEmail?.errors.email">
+                      إنتبه صيغة الإيميل غير صحيحة
+                  </div>
+              </div>
             </div>
             <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">Password</label>
-              <input #Rpassword="ngModel" name="p1" [(ngModel)]="rPassword" type="password" class="form-control" id="Rpassword"
+                <label class="sr-only" for="freeRpassword">Password</label>
+              <input #freerpassword="ngModel" name="freeRpassword" [(ngModel)]="rFreePassword" type="password" class="form-control" id="freeRpassword"
                 placeholder="أدخل كلمة سر" required (keyup)="onChange()">
 
             </div>
             <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
-              <input #Rcpassword="ngModel" [(ngModel)]="rcPassword" name="p2" type="password" class="form-control" id="Rcpassword"
+                <label class="sr-only" for="freeRcpassword">Confirm Password</label>
+            <input  #freercpassword="ngModel" [(ngModel)]="rCFreePassword" name="freeRcpassword" type="password" class="form-control" id="freeRcpassword"
                 placeholder="أدخل كلمة السر مرة أخرى" required (keyup)="onChange()">
 
-              <div style="font-family:JF-Flat!important;" *ngIf="(Rcpassword.dirty || Rcpassword.touched) &&(Rcpassword.value!= Rpassword.value)"
+              <div  style="font-family:JF-Flat!important;" *ngIf="(freercpassword.dirty || freercpassword.touched) &&(freercpassword.value!= freerpassword.value)"
                 class="alert alert-danger">
                 يجب تأكيد كلمة السر
               </div>
+              </div>
+                   
               <section style="border:1px solid #ced4da;border-radius: 0.25rem; margin-right:0px;margin-top:10px;">
                 <td>
                   <div>
@@ -165,22 +173,21 @@
                       (change)="locationObtained=!locationObtained;locationChecked=!locationChecked;locationResult()">
                       <label for="checkboxG33" class="css-label"></label>
                     </div>
-
-                  
+    
                 </td>
                 <td>
-                  <label class="badge badge-default" style="font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;"
+                  <label  class="fontMobile badge badge-default" style="font-family:JF-Flat;margin-right: 1px;"
                     *ngIf="!locationChecked">يجب تحديد موقعك للإستفادة بخدماتنا</label>
                 </td>
                 <td>
                   <label id="phRegLabel" [class.badge-danger]="!locationObtained" [class.badge-success]="locationObtained"
-                    class="badge" style="font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;" *ngIf="locationChecked">{{coordsResult}}</label>
+                    class="badge" style="line-height: 2;font-family:JF-Flat;margin-right: 1px;font-size: 0.75em;" *ngIf="locationChecked">{{coordsResult}}</label>
                 </td>
               </section>
-            </div>
+          
             <div class="form-group">
-              <button style="font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold"
-                [disabled]="!Register.form.valid || !equal">إشترك معنا</button>
+              <button style="margin-top: 15px;font-family:JF-Flat!important;" type="submit" class="btn btn-outline-primary btn-block font-weight-bold"
+                [disabled]="!freeRegister.form.valid || !equal || !locationChecked || !locationObtained">إشترك معنا</button>
             </div>
             <a style="margin-right:-10px;" class="fontMobile fontScreen btn btn-link" (click)="forFreeRegister=false;forFreeLogin=true">يمكنك
               <b>
@@ -221,7 +228,7 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button style="font-family:JF-Flat!important " type="button" class="btn btn-danger" data-dismiss="modal">إغلاق
+          <button (click)="empty();" style="font-family:JF-Flat!important " type="button" class="btn btn-danger" data-dismiss="modal">إغلاق
           </button>
         </div>
       </div>
@@ -233,7 +240,7 @@
 
 <!-- //////////// PayedOption Register Modal ////////////// -->
 <div>
-  <div class="modal fade" id="myPayedLogin">
+  <div data-keyboard="false" data-backdrop="static" class="modal fade" id="myPayedLogin">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <!-- //////////// Pharmacy Register Modal ///////////// -->

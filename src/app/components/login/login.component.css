@@ -85,7 +85,7 @@ input[type=checkbox].css-checkbox + label.css-label {
     background-position: 0 0;
     font-size: 14px;
     font-family:Droid-Arabic-Kufi-1;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     cursor: pointer;
 }
 
@@ -135,6 +135,7 @@ user-select: none;
     width: 25px;
     background-color: #bd2130;
     border-radius: 50%;
+    margin-left: -11px;
 }
 
 /* On mouse-over, add a grey background color */
